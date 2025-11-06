@@ -1,0 +1,18 @@
+﻿固定参数
+i,0.3
+v,23000.0
+p_sws,"0.5,0.5,0.25,0.245,0.24"
+n_unit,"20,6,28,28,28"
+w,0.2
+t,0.2
+fn_k,"2.0,1.2"
+p_in,0.005
+loss_attu,30.0
+section_seg_idx,1.0
+harmonic_times,2.0
+harmonic_start_idx,2
+vpc_adjust_coef,0.8
+kc_adjust_coef,2.0
+
+频率 (GHz),输出功率 (W)
+440.0,471.5577
