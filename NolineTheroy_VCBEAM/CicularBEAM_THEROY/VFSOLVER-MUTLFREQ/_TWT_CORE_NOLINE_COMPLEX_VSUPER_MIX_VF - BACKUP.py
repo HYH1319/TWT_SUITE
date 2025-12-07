@@ -122,8 +122,8 @@ def solveTWTNOLINE_INIT(
         state0,
         t_eval=t_eval,
         method='RK45',
-        rtol=1e-5,
-        atol=1e-5,
+        rtol=1e-6,
+        atol=1e-9,
         vectorized=False
     )
 
@@ -285,8 +285,8 @@ def solveTWTNOLINE_OUTPUT(
         state0,
         t_eval=t_eval,
         method='RK45',
-        rtol=1e-5,
-        atol=1e-5,
+        rtol=1e-6,
+        atol=1e-9,
         vectorized=False
     )
 
@@ -437,8 +437,8 @@ def solveTWTNOLINE_Drift(
         state0,
         t_eval=t_eval,
         method='RK45',
-        rtol=1e-5,
-        atol=1e-5,
+        rtol=1e-6,
+        atol=1e-9,
         vectorized=False
     )
 

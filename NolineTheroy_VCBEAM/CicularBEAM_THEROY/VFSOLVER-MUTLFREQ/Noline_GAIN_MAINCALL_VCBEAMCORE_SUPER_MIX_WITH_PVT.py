@@ -157,7 +157,6 @@ def calculate_SEGMENT_TWT_NOLINE(
             "beta_space": beta_space,
             "r_beam": r_beam,
             "Fill_Rate": COMMON_PARAMS["Fn_K"],
-            "p_SWS": seg["p_SWS"] * 1e-3,
             "Space_cut": Space_cut,
             "m": 50,
             "y_end": L + (results[-1]["y"][-1] if seg_idx > 0 else 0),

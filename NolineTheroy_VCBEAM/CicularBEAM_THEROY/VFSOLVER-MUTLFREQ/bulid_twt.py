@@ -32,7 +32,7 @@ def main():
     
     # 2. 使用Nuitka直接打包（跳过所有依赖检查）
     print("\n步骤 2/2: 开始Nuitka打包...")
-    script_file = "PYQT_NOLine__PVTOPT-MUTILFREQ-DDE_AL-VCBEAM-DEV.py"
+    script_file = "PYQT_NOLine__PVTOPT-MUTILFREQ-CMA_ES-VCBEAM-DEV.py"
     
     # 构建打包命令
     cmd = [

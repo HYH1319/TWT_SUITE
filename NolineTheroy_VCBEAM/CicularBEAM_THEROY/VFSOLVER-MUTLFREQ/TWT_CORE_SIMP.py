@@ -153,7 +153,7 @@ def simple_calculation(I, V, Kc, Loss_perunit, p_SWS, N_unit, w, t, Fill_Rate, f
             Fn = Fn * Fill_Rate
 
         R = np.sqrt(
-            calc_Rn_sqr_values(beta_Space, 2, p_SWS, r_beam, Fill_Rate)[0]
+            calc_Rn_sqr_values(beta_Space, 2, r_beam, Fill_Rate)[0]
         )  # R=Fn
 
         # 计算N=beta_e*p_SWS/(2*m.pi) * N_unit （图片公式3）
@@ -214,7 +214,7 @@ def calculate_R(gamma_0, a, b):
     return sol.x[0]
 
 
-def calc_Rn_sqr_values(beta_space, Space_cut, p_SWS, r_beam, Fill_Rate):
+def calc_Rn_sqr_values(beta_space, Space_cut, r_beam, Fill_Rate):
     n_values = np.arange(1, Space_cut)
     beta_n_values = beta_space*n_values
     a = r_beam * Fill_Rate
