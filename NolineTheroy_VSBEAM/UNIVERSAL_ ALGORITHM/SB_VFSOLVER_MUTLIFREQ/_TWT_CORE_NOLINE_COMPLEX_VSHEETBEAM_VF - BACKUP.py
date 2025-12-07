@@ -120,7 +120,7 @@ def solveTWTNOLINE_INIT(C, b, d, beam_params, m, A0, y_end, N_steps=1000):
         state0,
         t_eval=t_eval,
         method="RK45",  # 使用经典的 RK45 方法
-        rtol=1e-5,
+        rtol=1e-4,
         atol=1e-5,
         vectorized=False,
     )
@@ -184,38 +184,25 @@ def solveTWTNOLINE_OUTPUT(
     state0[4 : 4 + m] = result_u_finnal
     state0[4 + m : 4 + 2 * m] = result_phi_finnal
 
-    # ========================= ODE系统定义 =========================
     def ode_system(y, state):
-        """ODE系统定义，逻辑与原始 compute_derivatives 完全相同"""
         A, dA_dy, theta, dtheta_dy = state[0], state[1], state[2], state[3]
         u = state[4 : 4 + m]
         phi = state[4 + m : 4 + 2 * m]
-
         denominator = 1 + 2 * C * u
         sum_cos = np.sum(np.cos(phi) / denominator) * delta_phi0
         sum_sin = np.sum(np.sin(phi) / denominator) * delta_phi0
-
-        # 方程1: d²A/dy²
         term1 = A * ((1 / C - dtheta_dy) ** 2 - ((1 + C * b) / C) ** 2)
         rhs1 = (1 + C * b) / (np.pi * C) * (sum_cos + 2 * C * d * sum_sin)
         d2A_dy2 = term1 + rhs1
-
-        # 方程2: d²θ/dy²
         term_theta = (1 + C * b) / (np.pi * C) * (sum_sin - 2 * C * d * sum_cos)
         d2theta_dy2 = (term_theta - 2 * dA_dy * (dtheta_dy - 1 / C)) / A + 2 * d / C * (
             1 + C * b
         ) ** 2
-
-        # 方程3: ∂u/∂y (含空间电荷项)
         phi_diff = phi[:, np.newaxis] - phi
         Ez = compute_Esp_VR(phi_diff, denominator, delta_phi0, C, b, m, beam_params)
         term_u = A * (1 - C * dtheta_dy) * np.sin(phi) - C * dA_dy * np.cos(phi) + Ez
         du_dy = term_u / denominator
-
-        # 方程4: ∂ϕ/∂y
         dphi_dy = (2 * u) / (1 + 2 * C * u) - dtheta_dy
-
-        # 组合导数向量
         d_state = np.zeros_like(state)
         d_state[0] = dA_dy
         d_state[1] = d2A_dy2
@@ -223,7 +210,6 @@ def solveTWTNOLINE_OUTPUT(
         d_state[3] = d2theta_dy2
         d_state[4 : 4 + m] = du_dy
         d_state[4 + m : 4 + 2 * m] = dphi_dy
-
         return d_state
 
     sol = solve_ivp(
@@ -232,7 +218,7 @@ def solveTWTNOLINE_OUTPUT(
         state0,
         t_eval=t_eval,
         method="RK45",
-        rtol=1e-5,
+        rtol=1e-4,
         atol=1e-5,
         vectorized=False,
     )
@@ -295,27 +281,16 @@ def solveTWTNOLINE_Drift(
 
     def ode_system(y, state):
         A, dA_dy, theta, dtheta_dy = state[0], state[1], state[2], state[3]
-
         u = state[4 : 4 + m]
         phi = state[4 + m : 4 + 2 * m]
         denominator = 1 + 2 * C * u
-
-        # 方程1: d²A/dy²
         d2A_dy2 = 0.0
-
-        # 方程2: d²θ/dy²
         d2theta_dy2 = 0.0
-
-        # 方程3: ∂u/∂y (含空间电荷项)
         phi_diff = phi[:, np.newaxis] - phi
         Ez = compute_Esp_VR(phi_diff, denominator, delta_phi0, C, b, m, beam_params)
         term_u = Ez
         du_dy = term_u / denominator
-        
-        # 方程4: ∂ϕ/∂y
         dphi_dy = (2 * u) / (1 + 2 * C * u) - dtheta_dy
-
-        # 组合导数向量
         d_state = np.zeros_like(state)
         d_state[0] = dA_dy
         d_state[1] = d2A_dy2
@@ -323,7 +298,6 @@ def solveTWTNOLINE_Drift(
         d_state[3] = d2theta_dy2
         d_state[4 : 4 + m] = du_dy
         d_state[4 + m : 4 + 2 * m] = dphi_dy
-
         return d_state
 
     sol = solve_ivp(
@@ -332,7 +306,7 @@ def solveTWTNOLINE_Drift(
         state0,
         t_eval=t_eval,
         method="RK45",
-        rtol=1e-5,
+        rtol=1e-4,
         atol=1e-5,
         vectorized=False,
     )
