@@ -32,7 +32,7 @@ def main():
     
     # 2. 使用Nuitka直接打包（跳过所有依赖检查）
     print("\n步骤 2/2: 开始Nuitka打包...")
-    script_file = "PYQT_MAINGUI_SINGLE_FREQUNCY_MIXDesperDM.py"
+    script_file = "PYQT_MAINGUI_SINGLE_FREQUNCY_MIXDesperDM_MAINGUI.py"
     
     # 构建打包命令
     cmd = [
@@ -41,7 +41,7 @@ def main():
         "--onefile",
         "--standalone",
         "--follow-imports",
-        "--enable-plugin=tk-inter",
+        "--enable-plugin=pyqt5",
         "--include-package-data=matplotlib",
         "--windows-disable-console",
         "--mingw64"
