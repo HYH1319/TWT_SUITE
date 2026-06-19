@@ -36,9 +36,7 @@ logger = logging.getLogger(__name__)
 EVAL_PENALTY = 1e4
 N_FREQ = 3
 MAX_WORKERS = max(1, cpu_count())
-_APP_DIR = (os.path.dirname(sys.executable) if getattr(sys, 'frozen', False)
-            else os.path.dirname(os.path.abspath(__file__)))
-CONFIG_FILE = os.path.join(_APP_DIR, "configUDF", "OPT", "twt_RVEA_config_MUTIL.json")
+CONFIG_FILE = "./configUDF/OPT/twt_RVEA_config_MUTIL.json"
 
 _LBL_F1KC = "频点1 Kc值 (Ω):"
 _LBL_F1VPC = "频点1 Vpc值:"
