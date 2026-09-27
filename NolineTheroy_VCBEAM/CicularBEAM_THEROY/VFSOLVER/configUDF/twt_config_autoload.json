@@ -1,0 +1,58 @@
+{
+    "common": {
+        "I": 0.3,
+        "V": 23000.0,
+        "f0": 220.0,
+        "P_in": 1.0,
+        "w": 0.14,
+        "t": 0.14,
+        "Loss_attu": 30.0
+    },
+    "segments": [
+        {
+            "len": 10.0,
+            "Vpc": 0.285,
+            "p_SWS": 0.5,
+            "Kc": 3.88,
+            "Loss_perunit": 0.0,
+            "Fn_K": 2.0,
+            "type": "initial"
+        },
+        {
+            "len": 10.0,
+            "Vpc": 0.289,
+            "p_SWS": 0.55,
+            "Kc": 4.0,
+            "Loss_perunit": 0.0,
+            "Fn_K": 2.0,
+            "type": "O"
+        },
+        {
+            "len": 5.0,
+            "Vpc": 0.289,
+            "p_SWS": 0.55,
+            "Kc": 4.0,
+            "Loss_perunit": 0.0,
+            "Fn_K": 2.0,
+            "type": "attenuator"
+        },
+        {
+            "len": 20.0,
+            "Vpc": 0.28,
+            "p_SWS": 0.45,
+            "Kc": 3.5,
+            "Loss_perunit": 0.0,
+            "Fn_K": 2.0,
+            "type": "O"
+        },
+        {
+            "len": 20.0,
+            "Vpc": 0.275,
+            "p_SWS": 0.4,
+            "Kc": 3.0,
+            "Loss_perunit": 0.0,
+            "Fn_K": 2.0,
+            "type": "O"
+        }
+    ]
+}
